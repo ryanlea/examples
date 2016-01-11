@@ -1,4 +1,4 @@
-package au.ryanlea.hamcrest;
+package au.ryanlea.testing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +15,18 @@ import java.util.stream.Collectors;
 import static java.util.Arrays.asList;
 import static java.util.Locale.ENGLISH;
 
-public class PriceBeanInfo extends SimpleBeanInfo {
+public class AbstractBeanInfo extends SimpleBeanInfo {
 
-    private static final Logger log = LoggerFactory.getLogger(PriceBeanInfo.class);
+    private final Logger log;
 
-    private final Class beanClass = Price.class;
+    private final Class beanClass;
 
     private PropertyDescriptor[] propertyDescriptors;
+
+    public AbstractBeanInfo(Class beanClass) {
+        this.beanClass = beanClass;
+        this.log = LoggerFactory.getLogger(AbstractBeanInfo.class);
+    }
 
     public PropertyDescriptor[] getPropertyDescriptors() {
         if (propertyDescriptors == null) {
